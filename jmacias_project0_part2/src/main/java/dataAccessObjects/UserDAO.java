@@ -1,0 +1,5 @@
+package dataAccessObjects;
+
+interface UserDAO {
+
+}
