@@ -7,7 +7,7 @@ import dbControllers.UserController;
 class Signup {
 	private static InputStreamReader iReader = new InputStreamReader(System.in);
 	private static BufferedReader bReader = new BufferedReader(iReader);
-//	private static File data = new File(".\\src\\main\\resources\\Data.txt");
+
 	
 	public static void createAccount() throws IOException {
 		System.out.print("Please enter your user name: ");
@@ -19,6 +19,7 @@ class Signup {
 		System.out.println("New user name is: " + newUser.toString());
 		
 		UserController.addUsers(newUser);
+		System.out.println("(Press return)");
 		
 		// returning to first screen
 		String command = Driver.welcome();

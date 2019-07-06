@@ -1,5 +1,7 @@
 package dbControllers;
 
-public class UserController {
+import dataAccessObjects.UserDAO;
+
+public class UserController implements UserDAO {
 
 }

@@ -1,5 +1,5 @@
 package dataAccessObjects;
 
-interface PaymentDAO {
+public interface PaymentDAO {
 
 }

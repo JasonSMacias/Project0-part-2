@@ -1,5 +1,7 @@
 package dbControllers;
 
-public class PaymentController {
+import dataAccessObjects.PaymentDAO;
+
+public class PaymentController implements PaymentDAO {
 
 }

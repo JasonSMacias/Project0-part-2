@@ -1,5 +1,5 @@
 package dataAccessObjects;
 
-interface UserDAO {
+public interface UserDAO {
 
 }

@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+
+import beans.User;
 import dbControllers.*;
 
 class Login {
@@ -52,7 +54,7 @@ class Login {
 			Driver.check(command);
 		}
 		else {
-			System.out.println("Something wierd happened");
+			System.out.println("Something wierd happened at login");
 		}
 	}
 	
