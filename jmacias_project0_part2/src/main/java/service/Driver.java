@@ -29,7 +29,7 @@ public class Driver {
 		}
 		else {
 			System.out.println("   Please enter a valid command");
-			System.out.println("Press return to continue");
+			System.out.println("(Press return to continue)");
 			try {
 				bReader.readLine();
 			} catch (IOException e) {
@@ -42,7 +42,14 @@ public class Driver {
 
 	public static void main(String[] args) throws IOException {
 		// setting up readers
-		System.out.println("===========  Welcome to the Dealership  =============\n\n");
+		System.out.println("                     _______");
+		System.out.println("                    //  ||\\ \\");
+		System.out.println("              _____//___||_\\ \\___");
+		System.out.println("              )  _          _    \\");
+		System.out.println("              |_/ \\________/ \\___|");
+		System.out.println("             ___\\_/________\\_/______");
+		System.out.println("");
+		System.out.println("==========  Welcome to the Dealership  ===========\n\n");
 		String command1 = welcome();
 		check(command1);
 		
