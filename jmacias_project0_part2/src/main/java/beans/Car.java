@@ -6,12 +6,12 @@ import java.util.List;
 
 public class Car implements Serializable {
 	/**
-	 * Generated serialverionuid
+	 * Generated serial version UID
 	 */
 	private static final long serialVersionUID = 3987990158017823409L;
 	
 	public static int count = 0; // use method in dbutils to start this at highest current count, so that numbering will be continuous within sessions
-	public int number;
+	public int number; // TODO this is the id, will go through and change in all classes later
 	public String makeAndModel;
 	public int price;
 	public List<String> offers;
