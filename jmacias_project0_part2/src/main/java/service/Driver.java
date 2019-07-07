@@ -2,10 +2,15 @@ package service;
 
 import java.io.*;
 
+import beans.Car;
+import dataAccessObjects.CarDAO;
+import dbControllers.CarController;
+
 public class Driver {
 	
 	private static InputStreamReader iReader = new InputStreamReader(System.in);
 	private static BufferedReader bReader = new BufferedReader(iReader);
+	public static CarDAO carDAO = new CarController();
 	
 	static String welcome() {
 		System.out.println("     Please enter the number of your command");
@@ -50,6 +55,10 @@ public class Driver {
 		System.out.println("             ___\\_/________\\_/______");
 		System.out.println("");
 		System.out.println("==========  Welcome to the Dealership  ===========\n\n");
+		// Temporary creation of db record to test controller
+		Car newCar = new Car("Chevy Spectrum", 100);
+		carDAO.addCar(newCar);
+		
 		String command1 = welcome();
 		check(command1);
 		

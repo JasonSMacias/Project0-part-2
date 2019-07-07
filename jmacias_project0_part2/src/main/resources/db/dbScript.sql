@@ -5,7 +5,8 @@ DROP TABLE CarPayment;
 CREATE TABLE Car (
   car_id NUMBER PRIMARY KEY,
   make_and_model VARCHAR(150),
-  offer VARCHAR(10)
+  offer VARCHAR(10),
+  price NUMBER
 );
 
 CREATE TABLE AppUser (

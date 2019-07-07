@@ -23,6 +23,15 @@ public class Car implements Serializable {
 		this.price = price;
 		this.offers = new ArrayList<String>();
 	}
+	public int getNumber() {
+		return this.number;
+	}
+	public String getMakeAndModel() {
+		return this.makeAndModel;
+	}
+	public int getPrice() {
+		return this.price;
+	}
 	
 
 }
