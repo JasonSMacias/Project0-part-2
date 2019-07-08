@@ -2,9 +2,9 @@ package service;
 
 import java.io.*;
 
-import beans.Car;
 import dataAccessObjects.CarDAO;
 import dbControllers.CarController;
+import dbControllers.DatabaseUtils;
 
 public class Driver {
 	
@@ -56,11 +56,7 @@ public class Driver {
 		System.out.println("");
 		System.out.println("==========  Welcome to the Dealership  ===========\n\n");
 		// Temporary testing calls
-		// get car from db:
-//		Car newCar = carDAO.getCar(1);
-//		System.out.println("Car id: " + newCar.getNumber());
-//		System.out.println("Car Make and model: " + newCar.getMakeAndModel());
-//		System.out.println("Car price: " + newCar.getPrice());
+		
 		
 		String command1 = welcome();
 		check(command1);
