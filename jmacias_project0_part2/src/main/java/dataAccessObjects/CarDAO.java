@@ -3,7 +3,7 @@ package dataAccessObjects;
 import beans.Car;
 
 public interface CarDAO {
-	public Car getCar(Car car);
+	public Car getCar(int carId);
 	public void addCar(Car newCar);
 	// TODO this replaces a method that feeds a list and overwrites all cars in the 
 	// file version.  references must be updated.

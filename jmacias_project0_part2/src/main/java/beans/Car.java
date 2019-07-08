@@ -23,6 +23,13 @@ public class Car implements Serializable {
 		this.price = price;
 		this.offers = new ArrayList<String>();
 	}
+	public Car(String makeAndModel, int price, int number) {
+		super();
+		this.number = number;
+		this.makeAndModel = makeAndModel;
+		this.price = price;
+		this.offers = new ArrayList<String>(); // TODO  populate this with offers from database after method is added in databaseutils
+	}
 	public int getNumber() {
 		return this.number;
 	}

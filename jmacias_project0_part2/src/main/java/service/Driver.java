@@ -55,9 +55,12 @@ public class Driver {
 		System.out.println("             ___\\_/________\\_/______");
 		System.out.println("");
 		System.out.println("==========  Welcome to the Dealership  ===========\n\n");
-		// Temporary creation of db record to test controller
-		Car newCar = new Car("Chevy Spectrum", 100);
-		carDAO.addCar(newCar);
+		// Temporary testing calls
+		// get car from db:
+//		Car newCar = carDAO.getCar(1);
+//		System.out.println("Car id: " + newCar.getNumber());
+//		System.out.println("Car Make and model: " + newCar.getMakeAndModel());
+//		System.out.println("Car price: " + newCar.getPrice());
 		
 		String command1 = welcome();
 		check(command1);
