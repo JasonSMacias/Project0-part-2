@@ -2,16 +2,18 @@ package service;
 
 import java.io.*;
 
-import beans.Car;
+import beans.User;
 import dataAccessObjects.CarDAO;
+import dataAccessObjects.UserDAO;
 import dbControllers.CarController;
-import dbControllers.DatabaseUtils;
+import dbControllers.UserController;
 
 public class Driver {
 	
 	private static InputStreamReader iReader = new InputStreamReader(System.in);
 	private static BufferedReader bReader = new BufferedReader(iReader);
 	public static CarDAO carDAO = new CarController();
+	public static UserDAO userDAO = new UserController();
 	
 	static String welcome() {
 		System.out.println("     Please enter the number of your command");
@@ -59,7 +61,9 @@ public class Driver {
 		// Temporary testing calls
 //		Car testCar = new Car("Hoopdie", 20);
 //		carDAO.addCar(testCar);
-		carDAO.removeCar(3);
+//		User newUser = new User("Test User2", "password");
+//		newUser.setRole("Customer");
+//		userDAO.addUser(newUser);
 		
 		
 		String command1 = welcome();

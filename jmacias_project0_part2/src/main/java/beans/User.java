@@ -25,4 +25,17 @@ public class User implements Serializable {
 		
 	}
 	
+	public String getName() {
+		return this.name;
+	}
+	public String getRole() {
+		return this.role;
+	}
+	public String getPassword() {
+		return this.password;
+	}
+	public void setRole(String newRole) {
+		this.role = newRole;
+	}
+	
 }
