@@ -58,7 +58,7 @@ public class UserController implements UserDAO {
 				try (Connection conn = ConnectionFactory.getConnectionUsingProp()) {
 					// 2. create the statement
 					String sql = "INSERT INTO AppUser(u_name, u_password, u_role)"
-							+ "VALUES (?, ?, ?)";
+							+ " VALUES (?, ?, ?)";
 					// TODO also need to add table offers with fk to hold values in car object arrLst
 					PreparedStatement stmt = conn.prepareStatement(sql);
 					stmt.setString(1, newUser.getName());
@@ -81,6 +81,35 @@ public class UserController implements UserDAO {
 					e.printStackTrace();
 					System.out.println("Problem with getting prop for connection.");
 				}
+
+	}
+
+	@Override
+	public void updateUserRole(User thisUser) {
+		try (Connection conn = ConnectionFactory.getConnectionUsingProp()) {
+			// 2. create the statement
+			String sql = "Update AppUser "
+					+ "SET u_role = ?";
+			// TODO also need to add table offers with fk to hold values in car object arrLst
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, thisUser.getRole());
+			
+			// 3. Execute
+			int rowsAffected = stmt.executeUpdate();
+			System.out.println("Rows insterted: " + rowsAffected);
+			
+			// Maybe this should return the car object?
+			
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Something went wrong with creating car in db.");
+			
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Problem with getting prop for connection.");
+		}
 
 	}
 

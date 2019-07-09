@@ -3,7 +3,6 @@ package service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 
 import beans.User;
 import dataAccessObjects.UserDAO;
@@ -24,8 +23,6 @@ class Login {
 		
 		boolean loggedIn = false;
 		boolean usernameExists = false;
-		String userName = "";
-		String userRole = "";
 			if (null == user) {
 				System.out.println("object null");
 			}
@@ -33,13 +30,11 @@ class Login {
 				usernameExists = true;
 				if (user.password.equals(uPwd)) {
 					loggedIn = true;
-					userName = user.name;
-					userRole = user.role;
 				}
 			}
 		
 		if (loggedIn) {
-			LoggedIn.startApp(userName, userRole);
+			LoggedIn.startApp(user);
 		} 
 		else if (usernameExists == false) {
 			System.out.println("Sorry, that user name does not exist."
