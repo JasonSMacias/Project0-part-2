@@ -2,11 +2,13 @@ package service;
 
 import java.io.*;
 import beans.User;
+import dataAccessObjects.UserDAO;
 import dbControllers.UserController;
 
 class Signup {
 	private static InputStreamReader iReader = new InputStreamReader(System.in);
 	private static BufferedReader bReader = new BufferedReader(iReader);
+	public static UserDAO userDAO = new UserController();
 
 	
 	public static void createAccount() throws IOException {
@@ -18,7 +20,7 @@ class Signup {
 		User newUser = new User(uName, uPwd);
 		System.out.println("New user name is: " + newUser.toString());
 		
-		UserController.addUsers(newUser);
+		userDAO.addUser(newUser);
 		System.out.println("(Press return)");
 		
 		// returning to first screen

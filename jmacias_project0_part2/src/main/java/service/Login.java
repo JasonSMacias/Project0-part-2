@@ -6,11 +6,13 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import beans.User;
+import dataAccessObjects.UserDAO;
 import dbControllers.*;
 
 class Login {
 	private static InputStreamReader iReader = new InputStreamReader(System.in);
 	private static BufferedReader bReader = new BufferedReader(iReader);
+	public static UserDAO userDAO = new UserController();
 	
 	public static void login() throws IOException {
 		System.out.print("Please enter your user name: ");
@@ -18,23 +20,23 @@ class Login {
 		System.out.print("\nPlease enter the password for your account: ");
 		String uPwd = bReader.readLine();
 		
-		List<User> users = UserController.getUsers();
+		User user = userDAO.getUser(uName);
+		
 		boolean loggedIn = false;
 		boolean usernameExists = false;
 		String userName = "";
 		String userRole = "";
-		for (User x : users) {
-			
-			if (x.name.equals(uName)) {
+
+			if (user.name.equals(uName)) {
 				usernameExists = true;
-				if (x.password.equals(uPwd)) {
+				if (user.password.equals(uPwd)) {
 					loggedIn = true;
-					userName = x.name;
-					userRole = x.role;
+					userName = user.name;
+					userRole = user.role;
 				}
 			}
-				
-		}
+			// TODO continue here with logic
+						
 		
 		if (loggedIn) {
 			LoggedIn.startApp(userName, userRole);

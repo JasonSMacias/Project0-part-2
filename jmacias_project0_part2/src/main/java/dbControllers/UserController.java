@@ -3,8 +3,10 @@ package dbControllers;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import beans.Car;
 import beans.User;
 import dataAccessObjects.UserDAO;
 import service.ConnectionFactory;
@@ -12,9 +14,42 @@ import service.ConnectionFactory;
 public class UserController implements UserDAO {
 
 	@Override
-	public User getUser(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public User getUser(String userName) {
+		// connection
+				try (Connection conn = ConnectionFactory.getConnectionUsingProp()) {
+					// statement
+					String sql = "SELECT u_name, u_password, u_role"
+							+ " FROM AppUser"
+							+ " Where u_name = ?";
+					PreparedStatement stmt = conn.prepareStatement(sql);
+					stmt.setString(1, userName);
+					
+					// execute query
+					ResultSet results = stmt.executeQuery();
+					System.out.println(results);
+					
+					// iterate through results and return 
+					User user = null;
+					while (results.next()) {
+						String name = results.getString("u_name");
+						String password = results.getString("u_password");
+						String role = results.getString("u_role");
+						user = new User(name, password);
+						user.role = role;
+						// TODO add getter in User and use that above
+					}
+					return user;
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					System.out.println("Something went wrong with retrieving the user from the db.");
+					return null;
+				}
+				catch(IOException e) {
+					e.printStackTrace();
+					System.out.println("Problem with getting prop for connection.");
+					return null;
+				}
 	}
 
 	@Override
