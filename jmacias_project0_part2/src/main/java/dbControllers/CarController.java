@@ -5,8 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
 import beans.Car;
 import dataAccessObjects.CarDAO;
 import service.ConnectionFactory;
@@ -82,16 +80,41 @@ public class CarController implements CarDAO {
 		}
 	}
 
+
 	@Override
-	public Car overwriteCar(Car car) {
-		// TODO Auto-generated method stub
-		return null;
+	public void removeCar(int carId) {
+		// 1. connection
+				try (Connection conn = ConnectionFactory.getConnectionUsingProp()) {
+					// 2. create the statement
+					String sql = "DELETE FROM Car"
+							+ " WHERE car_id = ?";
+					
+					PreparedStatement stmt = conn.prepareStatement(sql);
+					stmt.setInt(1, carId);
+					
+					
+					// 3. Execute
+					int rowsAffected = stmt.executeUpdate();
+					System.out.println("Car deleted: " + rowsAffected);
+					
+					
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					System.out.println("Something went wrong with creating car in db.");
+					
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+					System.out.println("Problem with getting prop for connection.");
+				}
+		
 	}
 
 	@Override
-	public void removeCar(Car car) {
-		// TODO Auto-generated method stub
-		
+	public Car overwriteCar(Car car) {
+		// TODO This method is just used for writing to files, not needed w/ db
+		return car;
 	}
 
 }

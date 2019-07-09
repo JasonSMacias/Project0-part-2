@@ -8,6 +8,6 @@ public interface CarDAO {
 	// TODO this replaces a method that feeds a list and overwrites all cars in the 
 	// file version.  references must be updated.
 	public Car overwriteCar(Car car); 
-	public void removeCar(Car car);
+	public void removeCar(int carId);
 	
 }

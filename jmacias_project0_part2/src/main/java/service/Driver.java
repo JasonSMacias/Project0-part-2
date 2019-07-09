@@ -2,6 +2,7 @@ package service;
 
 import java.io.*;
 
+import beans.Car;
 import dataAccessObjects.CarDAO;
 import dbControllers.CarController;
 import dbControllers.DatabaseUtils;
@@ -56,6 +57,9 @@ public class Driver {
 		System.out.println("");
 		System.out.println("==========  Welcome to the Dealership  ===========\n\n");
 		// Temporary testing calls
+//		Car testCar = new Car("Hoopdie", 20);
+//		carDAO.addCar(testCar);
+		carDAO.removeCar(3);
 		
 		
 		String command1 = welcome();
