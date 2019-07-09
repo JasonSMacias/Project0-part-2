@@ -26,8 +26,10 @@ class Login {
 		boolean usernameExists = false;
 		String userName = "";
 		String userRole = "";
-
-			if (user.name.equals(uName)) {
+			if (null == user) {
+				System.out.println("object null");
+			}
+			else if (user.name.equals(uName)) {
 				usernameExists = true;
 				if (user.password.equals(uPwd)) {
 					loggedIn = true;
@@ -35,8 +37,6 @@ class Login {
 					userRole = user.role;
 				}
 			}
-			// TODO continue here with logic
-						
 		
 		if (loggedIn) {
 			LoggedIn.startApp(userName, userRole);
