@@ -1,5 +1,9 @@
 package dataAccessObjects;
 
-public interface PaymentDAO {
+import beans.Payment;
 
+public interface PaymentDAO {
+	public Payment getPayment(int userId);
+	 
+	public void addPayment(Payment newPayment);
 }

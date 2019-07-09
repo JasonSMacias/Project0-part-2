@@ -1,12 +1,15 @@
 package service;
 
 import java.io.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import beans.User;
 import dataAccessObjects.CarDAO;
 import dataAccessObjects.UserDAO;
 import dbControllers.CarController;
 import dbControllers.UserController;
+import dbControllers.DatabaseUtils;
 
 public class Driver {
 	
@@ -48,7 +51,7 @@ public class Driver {
 		}
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, SQLException {
 		// setting up readers
 		System.out.println("                     _______");
 		System.out.println("                    //  ||\\ \\");
@@ -64,6 +67,9 @@ public class Driver {
 //		User newUser = new User("Test User2", "password");
 //		newUser.setRole("Customer");
 //		userDAO.addUser(newUser);
+//		int results = DatabaseUtils.getPayments();
+//		System.out.println(results);
+		
 		
 		
 		String command1 = welcome();
