@@ -3,6 +3,7 @@ package dataAccessObjects;
 import java.util.List;
 
 import beans.Car;
+import beans.Offer;
 
 public interface CarDAO {
 	public Car getCar(int carId);
@@ -12,5 +13,7 @@ public interface CarDAO {
 	// file version.  references must be updated.
 	public Car overwriteCar(Car car); 
 	public void removeCar(int carId);
+	public void createOffer(Car car);
+	public List<Offer> getOffers();
 	
 }

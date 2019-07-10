@@ -2,6 +2,7 @@ package dbControllers;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,8 +24,33 @@ public class PaymentController implements PaymentDAO {
 
 	@Override
 	public void addPayment(Payment newPayment) {
-		// TODO Auto-generated method stub
-		System.out.println("Adding payment");
+		// 1. connection
+		try (Connection conn = ConnectionFactory.getConnectionUsingProp()) {
+			// 2. create the statement
+			String sql = "INSERT INTO CarPayment(payments_left, no_paid, car_number, buyer_name)"
+					+ "VALUES (?, ?, ?, ?)";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, newPayment.paymentsLeft);
+			stmt.setInt(2, newPayment.paid);
+			stmt.setInt(3, newPayment.carNumber);
+			stmt.setString(4, newPayment.buyerName);
+			
+			// 3. Execute
+			int rowsAffected = stmt.executeUpdate();
+			System.out.println("Rows insterted: " + rowsAffected);
+			
+			// Maybe this should return the car object?
+			
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Something went wrong with creating car in db.");
+			
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Problem with getting prop for connection.");
+		}
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Car;
+import beans.Offer;
 import beans.Payment;
 import dataAccessObjects.CarDAO;
 import dataAccessObjects.PaymentDAO;
@@ -85,30 +86,22 @@ class EmployeeService {
 			break;
 		case "3":
 			System.out.println("Current offers on our cars:");
-			List<Car> cars2 = carDAO.getCars();
+			List<Offer> offers = carDAO.getOffers();
 			boolean hasOffers = false;
 			List<Integer> carsOffered = new ArrayList<>();
-			for (Car x : cars2) {
-				if (x.offers.isEmpty()) {
-					continue;
-				}
-				else {
-					hasOffers = true;
-					System.out.println("Offer on car number " + x.number + " from:");
-					carsOffered.add(x.number);
-					for (String y : x.offers) {
-						System.out.println(y);
-						System.out.println("Would you like to accept this offer? (y or n)");
-						String answer = bReader.readLine();
-						if (answer.equals("y") || answer.equals("Y")) {
-							Payment newPayment = new Payment(x.number, y);
-							System.out.println("Car number " + x.number + " now belongs to " + y);
-							paymentDAO.addPayment(newPayment);
-							System.out.println("(press return)");
-							bReader.readLine();
-							break;
-						}
-					}
+			for (Offer x : offers) {
+				hasOffers = true;
+				System.out.println("Offer on car number " + x.carId + " from: " + x.userName);
+				carsOffered.add(x.carId);
+				System.out.println("Would you like to accept this offer? (y or n)");
+				String answer = bReader.readLine();
+				if (answer.equals("y") || answer.equals("Y")) {
+					Payment newPayment = new Payment(x.carId, x.userName);
+					System.out.println("Car number " + x.carId + " now belongs to " + x.userName);
+					paymentDAO.addPayment(newPayment);
+					System.out.println("(press return)");
+					bReader.readLine();
+					break;
 				}
 			}
 			System.out.println(hasOffers ? "" : "\n   No offers on our cars");

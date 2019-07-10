@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Car;
+import beans.Offer;
 import dataAccessObjects.CarDAO;
 
 import service.ConnectionFactory;
@@ -157,6 +158,72 @@ public class CarController implements CarDAO {
 					System.out.println("Problem with getting prop for connection.");
 					return null;
 				}
+	}
+
+	@Override
+	public void createOffer(Car car) {
+		// 1. connection
+				try (Connection conn = ConnectionFactory.getConnectionUsingProp()) {
+					// 2. create the statement
+					String sql = "INSERT INTO CarOffers(car_id, u_name)"
+							+ "VALUES (?, ?)";
+					// TODO also need to add table offers with fk to hold values in car object arrLst
+					PreparedStatement stmt = conn.prepareStatement(sql);
+					stmt.setInt(1, car.getNumber());
+					stmt.setString(2, car.offers.isEmpty() ? null : car.offers.get(0));
+					
+					// 3. Execute
+					int rowsAffected = stmt.executeUpdate();
+					System.out.println("Rows insterted: " + rowsAffected);
+					
+					// Maybe this should return the car object?
+					
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					System.out.println("Something went wrong with creating car in db.");
+					
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+					System.out.println("Problem with getting prop for connection.");
+				}
+	}
+
+	@Override
+	public List<Offer> getOffers() {
+		// connection
+		try (Connection conn = ConnectionFactory.getConnectionUsingProp()) {
+			// statement
+			String sql = "SELECT car_id, u_name"
+					+ " FROM CarOffers";
+			Statement stmt = conn.createStatement();
+			
+			// execute query
+			ResultSet results = stmt.executeQuery(sql);
+			System.out.println(results);
+			
+			// iterate through results and return 
+			List<Offer> offers = new ArrayList<>();
+			while (results.next()) {
+				int carId = results.getInt("car_id");
+				String userName = results.getString(2);
+				Offer offer = new Offer(carId, userName);
+				offers.add(offer);
+			}
+			
+			return offers;
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Something went wrong with retrieving the offers from the db.");
+			return null;
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+			System.out.println("Problem with getting prop for connection.");
+			return null;
+		}
 	}
 
 }

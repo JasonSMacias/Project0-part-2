@@ -1,6 +1,7 @@
 DROP TABLE Car;
 DROP TABLE AppUser;
 DROP TABLE CarPayment;
+DROP TABLE CarOffers;
 
 CREATE TABLE Car (
   car_id NUMBER PRIMARY KEY,
@@ -21,4 +22,9 @@ CREATE TABLE CarPayment (
   car_number NUMBER,
   buyer_name VARCHAR(100),
   PRIMARY KEY (car_number, buyer_name)
+);
+
+CREATE TABLE CarOffers (
+	car_id NUMBER,
+	u_name VARCHAR(100)
 );

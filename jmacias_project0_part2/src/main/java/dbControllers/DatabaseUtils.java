@@ -36,6 +36,7 @@ public class DatabaseUtils {
 			return 0;
 		}
 	}
+	// I duplicated this :-/ TODO check to see if it is used anywhere, if not delete
 	public static int getPayments() throws IOException {
 		try (Connection conn = ConnectionFactory.getConnectionUsingProp()) {
 			// statement
