@@ -5,8 +5,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import beans.Car;
 import dataAccessObjects.CarDAO;
+
 import service.ConnectionFactory;
 
 public class CarController implements CarDAO {
@@ -115,6 +120,43 @@ public class CarController implements CarDAO {
 	public Car overwriteCar(Car car) {
 		// TODO This method is just used for writing to files, not needed w/ db
 		return car;
+	}
+
+	@Override
+	public List<Car> getCars() {
+		// connection
+				try (Connection conn = ConnectionFactory.getConnectionUsingProp()) {
+					// statement
+					String sql = "SELECT car_id, make_and_model, price"
+							+ " FROM Car";
+					Statement stmt = conn.createStatement();
+					
+					// execute query
+					ResultSet results = stmt.executeQuery(sql);
+					System.out.println(results);
+					
+					// iterate through results and return 
+					List<Car> cars = new ArrayList<>();
+					while (results.next()) {
+						int carId = results.getInt("car_id");
+						String makeAndModel = results.getString(2);
+						int price = results.getInt("price");
+						Car car = new Car(makeAndModel, price, carId);
+						cars.add(car);
+					}
+					
+					return cars;
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					System.out.println("Something went wrong with retrieving the cars from the db.");
+					return null;
+				}
+				catch(IOException e) {
+					e.printStackTrace();
+					System.out.println("Problem with getting prop for connection.");
+					return null;
+				}
 	}
 
 }

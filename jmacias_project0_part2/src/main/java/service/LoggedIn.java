@@ -22,11 +22,11 @@ public class LoggedIn {
 			switch (response) {
 			case "1":
 				System.out.println("You chose \"Customer\"");
-				thisUser.role = "customer";
+				thisUser.setRole("customer");
 				break;
 			case "2":
 				System.out.println("You chose \"Employee\"");
-				thisUser.role = "employee";
+				thisUser.setRole("employee");;
 				break;
 			default:
 				System.out.println("You must choose a valid number.");

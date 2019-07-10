@@ -89,10 +89,12 @@ public class UserController implements UserDAO {
 		try (Connection conn = ConnectionFactory.getConnectionUsingProp()) {
 			// 2. create the statement
 			String sql = "Update AppUser "
-					+ "SET u_role = ?";
+					+ "SET u_role = ?"
+					+ " Where u_name = ?";
 			// TODO also need to add table offers with fk to hold values in car object arrLst
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, thisUser.getRole());
+			stmt.setString(2, thisUser.getName());
 			
 			// 3. Execute
 			int rowsAffected = stmt.executeUpdate();
